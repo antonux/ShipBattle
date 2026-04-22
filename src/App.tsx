@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect} from 'react';
 import { db } from './firebase';
 import { doc, onSnapshot, updateDoc, setDoc, getDoc } from 'firebase/firestore';
 
@@ -26,7 +26,6 @@ interface GameState {
 }
 
 // --- CONSTANTS ---
-const GRID_SIZE = 10;
 const TOTAL_SHIP_CELLS = 17; // 5 + 4 + 3 + 3 + 2
 
 export default function ShipBattleApp() {
