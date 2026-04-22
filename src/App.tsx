@@ -2,8 +2,7 @@ import './App.css'
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { db } from './firebase';
 import { 
-  doc, onSnapshot, updateDoc, setDoc, getDoc, 
-  deleteDoc, serverTimestamp, Timestamp, arrayUnion 
+  doc, onSnapshot, updateDoc, setDoc, getDoc, serverTimestamp, Timestamp, arrayUnion 
 } from 'firebase/firestore';
 
 // --- CONFIG ---
@@ -234,7 +233,7 @@ export default function BattleShipAdvanced() {
     <div className="min-h-screen bg-slate-950 text-slate-200 p-4 font-mono flex flex-col">
       {/* HUD OVERLAY - Results Display */}
       {(game?.status === 'gameOver' || game?.status === 'aborted') && (
-        <div className="fixed top-0 left-0 w-full z-[100] flex justify-center p-4 pointer-events-none">
+        <div className="fixed top-0 left-0 w-full z-100 flex justify-center p-4 pointer-events-none">
           <div className="bg-black border-2 border-cyan-500 p-4 px-12 shadow-[0_0_50px_rgba(0,0,0,1)] text-center pointer-events-auto flex flex-col items-center animate-in slide-in-from-top duration-500">
             {game.status === 'gameOver' ? (
               <h1 className={`text-5xl font-black italic tracking-tighter ${game.winner === playerId ? 'text-cyan-500' : 'text-red-600'}`}>
@@ -314,13 +313,13 @@ export default function BattleShipAdvanced() {
       {/* VALORANT CHAT */}
       {gameId && (
         <div className="fixed bottom-6 left-6 w-80 z-40 flex flex-col pointer-events-none">
-          <div className="flex-1 max-h-48 overflow-y-auto flex flex-col p-2 pointer-events-none bg-gradient-to-t from-black/40 to-transparent">
+          <div className="flex-1 max-h-48 overflow-y-auto flex flex-col p-2 pointer-events-none bg-linear-to-t from-black/40 to-transparent">
             {game?.messages?.map((msg, idx) => (
               <div key={idx} className="flex gap-2 items-baseline mb-1 animate-in fade-in slide-in-from-left-2 duration-300">
                 <span className={`text-[10px] font-black uppercase whitespace-nowrap drop-shadow-md ${
                   msg.sender === 1 ? 'text-cyan-400' : 'text-emerald-400'
                 }`}>[CMD_0{msg.sender}]:</span>
-                <span className="text-white text-[12px] font-medium drop-shadow-lg leading-tight break-words">{msg.text}</span>
+                <span className="text-white text-[12px] font-medium drop-shadow-lg leading-tight wrap-break-words">{msg.text}</span>
               </div>
             ))}
             <div ref={chatEndRef} />
