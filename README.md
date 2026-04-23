@@ -35,4 +35,7 @@ Plan carefully—every move has consequences.
 - **React** — Frontend and UI logic  
 - **Firebase** — Backend and real-time game sync
 
+## Link
+
+https://ship-battle-gamma.vercel.app/
 
